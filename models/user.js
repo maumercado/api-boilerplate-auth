@@ -56,6 +56,16 @@ userSchema.method('generateToken', function () {
     return jwt.encode({ sub: user._id, iat: timestamp }, config.secret);
 });
 
+userSchema.method('comparePassword', async function (candidatePassword) {
+    const user = this;
+    try {
+        const isMatch = await bcrypt.compare(candidatePassword, user.password);
+        return isMatch;
+    } catch (error) {
+        return Promise.reject(error);
+    }
+});
+
 // Create Model Class
 const ModelClass = mongoose.model('User', userSchema);
 
