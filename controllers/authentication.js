@@ -14,5 +14,8 @@ module.exports = {
         let user = new User({ email, password });
         await user.save();
         res.send({ token: user.generateToken(), email: user.email });
+    }),
+    signin: utils.asyncWrap(async (req, res) => {
+        res.send({ token: req.user.generateToken() });
     })
 };
