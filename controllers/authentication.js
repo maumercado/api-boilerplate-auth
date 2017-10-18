@@ -13,6 +13,6 @@ module.exports = {
 
         let user = new User({ email, password });
         await user.save();
-        res.send({ token: user.token, email: user.email });
+        res.send({ token: user.generateToken(), email: user.email });
     })
 };
