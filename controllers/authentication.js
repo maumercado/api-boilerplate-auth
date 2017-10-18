@@ -12,7 +12,6 @@ module.exports = {
         }
 
         let user = new User({ email, password });
-        user.token = user.generateToken();
         await user.save();
         res.send({ token: user.token, email: user.email });
     })

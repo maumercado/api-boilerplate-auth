@@ -12,7 +12,6 @@ const userSchema = new Schema({
         unique: true,
         lowercase: true
     },
-    token: { type: String, index: { sparse: true } },
     password: { type: String, required: true }
 });
 
