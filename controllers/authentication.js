@@ -12,8 +12,13 @@ module.exports = {
         }
 
         let user = new User({ email, password });
-        await user.save();
-        res.send({ token: user.generateToken(), email: user.email });
+        try {
+            await user.save();
+            res.send({ token: user.generateToken(), email: user.email });
+        } catch (error) {
+            req.log.error({ error: error }, 'Registration Error');
+            res.status(422).send({ error: 'Bad registration information' });
+        }
     }),
     signin: utils.asyncWrap(async (req, res) => {
         res.send({ token: req.user.generateToken() });
