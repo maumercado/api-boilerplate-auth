@@ -1,7 +1,8 @@
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
+const bunyan = require('bunyan');
+const bunyanMiddleware = require('bunyan-middleware');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -14,7 +15,21 @@ mongoose.connect('mongodb://localhost/auth', { useMongoClient: true });
 
 // App Setup
 app.use(cors());
-app.use(morgan('combined'));
+
+// Logging
+
+const logger = bunyan.createLogger({ name: 'My App' });
+
+app.use(
+    bunyanMiddleware({
+        headerName: 'X-Request-Id',
+        propertyName: 'reqId',
+        logName: 'req_id',
+        obscureHeaders: ['Authorization'],
+        logger: logger
+    })
+);
+
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
 
@@ -22,4 +37,4 @@ router(app);
 const port = process.env.PORT || 3090;
 const server = http.createServer(app);
 server.listen(port);
-console.log('Server listening on:', port);
+logger.info({ port: port }, 'Server initiated!');
