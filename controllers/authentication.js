@@ -20,6 +20,7 @@ module.exports = {
             res.status(422).send({ error: 'Bad registration information' });
         }
     }),
+
     signin: utils.asyncWrap(async (req, res) => {
         res.send({ token: req.user.generateToken() });
     })
