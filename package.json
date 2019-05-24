@@ -11,7 +11,7 @@
     "license": "ISC",
     "dependencies": {
         "bcrypt": "^1.0.3",
-        "body-parser": "^1.18.2",
+        "body-parser": "^1.19.0",
         "boom": "^6.0.0",
         "bunyan": "^1.8.12",
         "bunyan-middleware": "^0.8.0",
