@@ -26,6 +26,6 @@
     "devDependencies": {
         "babel-eslint": "^8.0.1",
         "nodemon": "^1.12.1",
-        "prettier-eslint": "^8.2.1"
+        "prettier-eslint": "^10.1.0"
     }
 }
