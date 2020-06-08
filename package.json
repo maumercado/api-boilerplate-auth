@@ -10,7 +10,7 @@
     "author": "Mauricio Mercado",
     "license": "ISC",
     "dependencies": {
-        "bcrypt": "^1.0.3",
+        "bcrypt": "^5.0.0",
         "body-parser": "^1.18.2",
         "boom": "^6.0.0",
         "bunyan": "^1.8.12",
